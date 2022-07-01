@@ -1,0 +1,23 @@
+﻿@page "/drag"
+<h3>Drag</h3>
+<div draggable="true"
+     @ondragend="OnDragEnd" @ondragstart="OnDragStart"
+     style="position:relative; top: @(offsetY)px; left: @(offsetX)px; ">
+   <div style="border-style:solid; border-color: black; width: fit-content; padding:5px">Draggable Div</div>
+</div>
+
+@code 
+{
+     private double startX, startY, offsetX, offsetY;
+
+     private void OnDragStart(DragEventArgs args) {
+         startX = args.ClientX;
+         startY = args.ClientY;
+ }
+
+     private void OnDragEnd(DragEventArgs args)
+ {
+         offsetX += args.ClientX - startX;
+         offsetY += args.ClientY - startY;
+    }
+}
